@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>夏の夜エアコン睡眠バランス診断</title>
+  <meta name="description" content="寝苦しい夏の夜に、エアコン設定・湿度・服装・寝具のバランスをゆるく確認する静的Webアプリです。">
+  <meta property="og:title" content="夏の夜エアコン睡眠バランス診断">
+  <meta property="og:description" content="暑すぎる、冷えすぎる、乾きすぎる。夏の夜の睡眠環境をやさしく見直すミニ診断。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#153243">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero" aria-labelledby="app-title">
+      <div>
+        <p class="eyebrow">Summer Sleep Check</p>
+        <h1 id="app-title">夏の夜エアコン<br>睡眠バランス診断</h1>
+        <p class="hero-copy">暑くて眠れない。でも冷やしすぎると朝だるい。そんな夜の「ちょうどよさ」を、温度・湿度・体感からゆるく見直します。</p>
+      </div>
+      <div class="moon-card" aria-hidden="true">
+        <span class="moon"></span>
+        <span class="wind wind-a"></span>
+        <span class="wind wind-b"></span>
+      </div>
+    </section>
+
+    <form id="sleepForm" class="panel">
+      <div class="field-grid">
+        <label class="field">
+          <span>室温</span>
+          <output id="tempOut">27℃</output>
+          <input id="temp" type="range" min="22" max="32" value="27" step="1">
+        </label>
+
+        <label class="field">
+          <span>湿度</span>
+          <output id="humidityOut">60%</output>
+          <input id="humidity" type="range" min="35" max="85" value="60" step="5">
+        </label>
+
+        <label class="field">
+          <span>寝る前の体感</span>
+          <select id="feeling">
+            <option value="hot">暑くて寝つきにくい</option>
+            <option value="ok" selected>少し暑いけど許容範囲</option>
+            <option value="cold">冷えが気になる</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>寝具</span>
+          <select id="bedding">
+            <option value="light" selected>薄い肌掛け・タオルケット</option>
+            <option value="none">何も掛けない</option>
+            <option value="heavy">厚めの布団・毛布</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>エアコン運転</span>
+          <select id="mode">
+            <option value="timer">タイマーで切る</option>
+            <option value="allnight" selected>朝までつける</option>
+            <option value="fan">扇風機・送風中心</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>朝の状態</span>
+          <select id="morning">
+            <option value="dry">のど・肌が乾く</option>
+            <option value="sweat">汗で起きる</option>
+            <option value="fine" selected>大きな不快感はない</option>
+            <option value="heavy">だるさ・冷えを感じる</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="primary-button" type="submit">バランスを見る</button>
+    </form>
+
+    <section id="result" class="result panel is-hidden" aria-live="polite">
+      <p class="result-label">今日のバランス</p>
+      <h2 id="resultTitle">診断結果</h2>
+      <div class="meter" aria-hidden="true">
+        <span id="meterBar"></span>
+      </div>
+      <p id="resultText"></p>
+      <div class="tips" id="tips"></div>
+      <button class="ghost-button" id="resetButton" type="button">もう一度見る</button>
+    </section>
+
+    <section class="note panel">
+      <h2>使い方のコツ</h2>
+      <p>これは医療判断ではなく、夜の環境を見直すための目安です。体調に不安がある場合は、無理せず専門家や公的な情報を確認してください。</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
